@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty
 from kivymd.uix.textfield import MDTextField
 from kivy.core.window import Window
+from kivy.clock import Clock
 import openai
 import my_key
 import threading
@@ -16,12 +17,16 @@ class MainScreen(Screen):
     search_box = ObjectProperty()
     chat_list = ObjectProperty()
     
-    def search(self):
+    def start_input(self):
+        self.spinner.active = True
         global query
         query = self.search_box.text
         self.search_box.text = ""
         user_list_item = MDTextField(text=query, readonly=True, focus=False, mode="rectangle", icon_left="account-circle", multiline=True )
         self.ids.chat_list.add_widget(user_list_item)
+    
+    def search(self):
+        
         self.start_background_task()
         result_thread.join()
         ai_list_item = MDTextField(text= ai_message, readonly=True, focus=False, mode="rectangle", icon_right="robot-happy" , multiline=True )
