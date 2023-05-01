@@ -18,22 +18,24 @@ class MainScreen(Screen):
     
     def search(self):
         global query
-        global ai_message
         query = self.search_box.text
         self.search_box.text = ""
         user_list_item = MDTextField(text=query, readonly=True, focus=False, mode="rectangle", icon_left="account-circle", multiline=True )
         self.ids.chat_list.add_widget(user_list_item)
         self.start_background_task()
-        #ai_list_item = MDTextField(text= ai_message, readonly=True, focus=False, mode="rectangle", icon_right="robot-happy" , multiline=True )
-        #self.ids.chat_list.add_widget(ai_list_item)
-        #self.spinner.active = False
+        result_thread.join()
+        ai_list_item = MDTextField(text= ai_message, readonly=True, focus=False, mode="rectangle", icon_right="robot-happy" , multiline=True )
+        self.ids.chat_list.add_widget(ai_list_item)
+        
     
     def start_background_task(self):
-        threading.Thread(target = self.answer).start()
+        global result_thread
+        result_thread = threading.Thread(target = self.answer)
+        result_thread.start()
         
     def answer(self, *args):
+        global ai_message
         ai_message = Model.result(query)
-        print(ai_message)
         self.spinner.active = False
         
         
