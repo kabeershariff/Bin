@@ -1,0 +1,71 @@
+<MainScreen>:
+	search_box : search_box
+	spinner : spinner
+	
+
+	MDScreen:
+		MDNavigationLayout:
+			MDScreenManager:
+				MDScreen:
+					MDTopAppBar:
+						title: "BotZilla"
+						pos_hint: {"top": 1}
+						left_action_items:
+							[['menu', lambda x: nav_drawer.set_state("open")]]
+
+					MDScrollView:
+						size_hint_x: .88
+						size_hint_y: .70
+						pos_hint: {"center_x": .5, "center_y": .5}
+						MDList:
+							id:chat_list
+							spacing: 15
+							padding: 15
+							
+					MDTextField:
+						size_hint_x: .80
+						multiline: False
+						hint_text: "Speak with BotZilla"
+						pos_hint: {"center_x": .5, "center_y": .05}
+						on_text_validate: 
+							root.search()
+						id: search_box
+
+					MDIconButton:
+						icon:"send"
+						pos_hint: {"center_x": .95, "center_y": .05}
+						on_press:
+							root.search()
+							
+					MDSpinner:
+						id : spinner
+						pos_hint: {'center_x': .5, 'center_y': .5}
+						size_hint: None, None
+						size: 80, 80
+						active : False 
+
+			MDNavigationDrawer:
+				id: nav_drawer
+
+				MDList:
+					pos_hint: {"center_x": .5, "center_y": .85}
+					TwoLineIconListItem:
+						text:"Thariq Ahamed"
+						secondary_text:"@itzthariq"
+
+						IconLeftWidget:
+							icon: "github"
+
+					TwoLineIconListItem:
+						text:"Omar Shariff"
+						secondary_text:"@kabeershariff"
+
+						IconLeftWidget:
+							icon: "github"
+
+					TwoLineIconListItem:
+						text:"Nirmal"
+						secondary_text:"@Nirmalcraz"
+
+						IconLeftWidget:
+							icon: "github"
