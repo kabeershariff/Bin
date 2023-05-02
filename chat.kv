@@ -28,16 +28,16 @@
 						hint_text: "Speak with BotZilla"
 						pos_hint: {"center_x": .5, "center_y": .05}
 						on_text_validate: 
-							root.start_input()
 							root.search()
+							root.update_chat_list()
 						id: search_box
 
 					MDIconButton:
 						icon:"send"
 						pos_hint: {"center_x": .95, "center_y": .05}
 						on_press:
-							root.start_input()
 							root.search()
+							root.update_chat_list()
 							
 					MDSpinner:
 						id : spinner
