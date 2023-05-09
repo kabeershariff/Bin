@@ -1,6 +1,7 @@
 <MainScreen>:
-	search_box:search_box
+	search_box : search_box
 	spinner : spinner
+	icon_button : icon_button
 	
 
 	MDScreen:
@@ -31,6 +32,7 @@
 						id: search_box
 
 					MDIconButton:
+						id: icon_button
 						icon:"send"
 						pos_hint: {"center_x": .95, "center_y": .05}
 						on_press: root.search()
