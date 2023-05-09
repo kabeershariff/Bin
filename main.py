@@ -39,6 +39,9 @@ class MainScreen(Screen):
     def update(self):
         #query = self.search_box.text
         self.search_box.text = ""
+        self.spinner.active = False
+        self.search_box.disabled = False
+        self.icon_button.disabled = False
         user_list_item = MDTextField(text=query, readonly=True, focus=False, mode="rectangle", icon_left="account-circle", multiline=True )
         ai_list_item = MDTextField(text=ai_message, readonly=True, focus=False, mode="rectangle", icon_right="robot-happy" , multiline=True )
         
