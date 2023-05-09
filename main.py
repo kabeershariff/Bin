@@ -3,7 +3,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty
 from kivymd.uix.textfield import MDTextField
 from kivy.core.window import Window
-from kivy.clock import Clock
+from kivy.clock import mainthread
 import openai
 import my_key
 import threading
@@ -33,7 +33,9 @@ class MainScreen(Screen):
         global ai_message
         ai_message = Model.result(query)
         print(ai_message)
+        self.update()
     
+    @mainthread
     def update(self):
         #query = self.search_box.text
         self.search_box.text = ""
